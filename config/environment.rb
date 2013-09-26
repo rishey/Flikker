@@ -18,6 +18,10 @@ require 'logger'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
+require 'mini_magick'
+
 require 'erb'
 
 # Some helper constants for path-centric logic
