@@ -18,8 +18,9 @@ require 'logger'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
-require 'carrierwave'
-require 'carrierwave/orm/activerecord'
+
+
+
 require 'mini_magick'
 
 require 'erb'
@@ -35,3 +36,8 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+
+set :root, APP_ROOT 
+Dir[APP_ROOT.join('app', 'uploaders', '*.rb')].each { |file| require file }
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
