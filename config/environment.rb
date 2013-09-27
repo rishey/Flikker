@@ -9,6 +9,7 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 require 'rubygems'
 
 require 'uri'
+require 'open-uri'
 require 'pathname'
 
 require 'pg'
@@ -18,12 +19,12 @@ require 'logger'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
+require 'erb'
 
-
-
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
 require 'mini_magick'
 
-require 'erb'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
@@ -33,11 +34,11 @@ APP_NAME = APP_ROOT.basename.to_s
 # Set up the controllers and helpers
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
+Dir[APP_ROOT.join('app', 'uploaders', '*.rb')].each { |file| require file }
 
-# Set up the database and models
 require APP_ROOT.join('config', 'database')
 
-set :root, APP_ROOT 
-Dir[APP_ROOT.join('app', 'uploaders', '*.rb')].each { |file| require file }
-require 'carrierwave'
-require 'carrierwave/orm/activerecord'
+CarrierWave.configure do |config|
+  # config.root = APP_ROOT.join('public/')
+  config.root = APP_ROOT + 'public/'
+end
