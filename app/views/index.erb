@@ -1,7 +1,18 @@
 <div class="container">
   <h1>Welcome to Flikker, kutwijf!</h1>
- <form action="/whatever" enctype="multipart/form-data">
+<!--  <form action="/upload" method="post" enctype="multipart/form-data">
   <input type="file" name="filename">
   <input type="submit" value="Submit">
+</form> -->
 
-</form>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <p>Image title:</p>
+      <input type="text" name="title">
+      <p>Album:</p>
+      <input type="text" name="album_name"><br>
+       <p>Upload photo from your computer:</p>
+      <p><input type="file" name="upload_photo"/></p>
+<!--       <p>Upload photo by url:</p>
+      <p><input type="url" name="remote_image_url"></p> -->
+      <input type="submit" value="upload">
+    </form>

@@ -1,11 +1,10 @@
 class CreatePhotos < ActiveRecord::Migration
   def change
   	create_table :photos do |t|
-  		t.string :url
-  		t.string :description
   		t.belongs_to :album
-  		t.belongs_to :user
-  		t.string :file
+      t.string :title
+      t.string :file  		
+  		# t.belongs_to :user
   		t.timestamps
   	end
   end
