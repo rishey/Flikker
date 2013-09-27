@@ -5,7 +5,12 @@ end
 
 post '/upload' do
 	p = Photo.new
-	p.file = params[:file]
+	puts params.inspect
+	puts
+	puts params[:upload_photo]
+	puts params[:upload_photo][:filename]
+	puts
+	p.file = params[:upload_photo]
 	p.title = params[:title]
 	p.save
 end
